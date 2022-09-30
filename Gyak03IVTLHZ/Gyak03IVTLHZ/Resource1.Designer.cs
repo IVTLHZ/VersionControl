@@ -70,7 +70,7 @@ namespace Gyak03IVTLHZ {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keresztnév.
+        ///   Looks up a localized string similar to Utónév.
         /// </summary>
         internal static string FirstName {
             get {
