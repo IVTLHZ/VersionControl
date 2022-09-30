@@ -12,16 +12,19 @@ namespace Gyak03IVTLHZ.Entities //a mappán belüli névtérbe hoztam létre a c
     {
         //egyedi azonosító generálása sorszámozás helyett, nem lehet bennük ismérlődés
         public Guid ID { get; set; } = Guid.NewGuid();
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+
+        //tasks/csv miatt kiszedem a külön bekérést, felesleges
+        //public string FirstName { get; set; }
+        //public string LastName { get; set; }
         public string FullName //a két névrészből fűz össze
         {
-            get
-            {
-                return string.Format("{0} {1}",
-                LastName,
-                FirstName);
-            }
+            get;
+            //csv miatt nem kellő részek{
+            //return string.Format("{0} {1}",
+            //LastName,
+            //FirstName);
+            set;
         }
     }
 }
+

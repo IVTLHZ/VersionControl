@@ -20,8 +20,8 @@ namespace Gyak03IVTLHZ
         {
             InitializeComponent();
 
-            label1.Text = Resource1.LastName;
-            label2.Text = Resource1.FirstName;
+            label1.Text = Resource1.FullName;
+            //csv -label2.Text = Resource1.FirstName;
             button1.Text = Resource1.Add;
 
             listBox1.DataSource = users;
@@ -37,8 +37,9 @@ namespace Gyak03IVTLHZ
         private void button1_Click(object sender, EventArgs e)
         {
             User user = new User() {
-                LastName = textBox1.Text,
-                FirstName = textBox2.Text
+                //csv - LastName = textBox1.Text,
+                //csv - FirstName = textBox2.Text
+                FullName = textBox1.Text,
             };
             users.Add(user);
             
