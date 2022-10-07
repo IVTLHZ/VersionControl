@@ -9,6 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//Excel könyvtár hozzáadása: Projekt --> Add reference -->COM oldalon
+using Excel = Microsoft.Office.Interop.Excel; //Excel alias név, az excel könyvtárban vannak osztályok, amik már részei a projektnek (pl Application) --- így tudja a kód mire hivatkozunk
+//pl Excel.Appcicationnel nem az eredeti, hanem Excel alatti osztályra hivatkozunk
+
+//technikai könyvtár, missing.value értékek miatt kell, amik lehetnek fv paraméterekben azt jelezve, hogy okés az alapértelmezett érték
+using System.Reflection;
+
 namespace Gyak04IVTLHZ
 {
     public partial class Form1 : Form
