@@ -17,6 +17,8 @@ using Excel = Microsoft.Office.Interop.Excel; //Excel alias név, az excel köny
 using System.Reflection;
 using System.Data.Entity.Migrations.Model;
 using System.Diagnostics;
+using System.Windows.Markup;
+using Microsoft.Office.Interop.Excel;
 
 namespace Gyak04IVTLHZ
 {
@@ -51,6 +53,21 @@ namespace Gyak04IVTLHZ
             return ExcelCoordinate;
         }
 
+        //ide is kiszervezzük a header változót a formázás miatt, nem csak a createtableben található
+        string[] headers = new string[] { //string tömb tábla fejléceivel + extra oszlop fejléce
+                 "Kód",
+                 "Eladó",
+                 "Oldal",
+                 "Kerület",
+                 "Lift",
+                 "Szobák száma",
+                 "Alapterület (m2)",
+                 "Ár (mFt)",
+                 "Négyzetméter ár (Ft/m2)"};
+
+
+
+
         public Form1()
         {
             InitializeComponent();
@@ -61,6 +78,36 @@ namespace Gyak04IVTLHZ
 
             CreateTable(); //munkalap beállításaihoz
 
+            FormatTable();
+        }
+
+        private void FormatTable()
+        {
+            //fejléc formázása
+
+            //cellák intervalluma változóban
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            //beállítások
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            //hasonlóan rangekben új formázások
+
+            //táblára körbeszegély
+            Excel.Range tableRange = xlSheet.get_Range(GetCell(1, 1), GetCell(xlSheet.Rows.Count, headers.Length));
+            tableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+            //első oszlop félkövér és háttérszín
+            Excel.Range firstColumnRange = xlSheet.get_Range(GetCell(2, 1), GetCell(xlSheet.Rows.Count, 1));
+            firstColumnRange.Font.Bold = true;
+            firstColumnRange.Interior.Color = Color.LightYellow;
+            //utolsó oszlop halványzöld hátterű
+            Excel.Range lastColumnRange = xlSheet.get_Range(GetCell(2, headers.Length), GetCell(xlSheet.Rows.Count, headers.Length));
+            lastColumnRange.Interior.Color = Color.LightGreen;
         }
 
         private void CreateTable()
