@@ -24,11 +24,51 @@ namespace Gyak04IVTLHZ
 
         List<Flat> Flats; //flat típusú elemekből álló REFERENCIA - nem new item-es
 
+        //üres változók
+        Excel.Application xlApp; //alkalmazás
+        Excel.Workbook xlWB; //munkafüzet
+        Excel.Worksheet xlSheet; // munkalap
+
         public Form1()
         {
             InitializeComponent();
 
             LoadData(); //ebből void visszatérési értékkel paraméter nélküli fv (ami ténylg csak a létrehozáskori állapot)
+
+            CreateExcel(); //hívásban később generált createTable
+        }
+
+        private void CreateExcel()
+        {
+            try
+            {
+                // Excel elindítása és az applikáció objektum betöltése
+                xlApp = new Excel.Application();
+
+                // Új munkafüzet
+                xlWB = xlApp.Workbooks.Add(Missing.Value); //tehát alapértelmezett értékkel
+
+                // Új munkalap
+                xlSheet = xlWB.ActiveSheet; //a wb active sheet-je
+
+                // Tábla létrehozása
+                CreateTable(); // Ennek megírása a következő feladatrészben következik
+
+                // Control átadása a felhasználónak
+                xlApp.Visible = true;
+                xlApp.UserControl = true;
+            }
+            catch (Exception ex) // Hibakezelés a beépített hibaüzenettel
+            {
+                string errMsg = string.Format("Error: {0}\nLine: {1}", ex.Message, ex.Source);
+                MessageBox.Show(errMsg, "Error");
+
+                // Hiba esetén az Excel applikáció bezárása automatikusan
+                xlWB.Close(false, Type.Missing, Type.Missing);
+                xlApp.Quit();
+                xlWB = null;
+                xlApp = null;
+            }
         }
 
         private void LoadData() //cél: programstrukturálás --- érdemes feladatrészeket függvénybe rendezni --- konstruktorban csak függvényhívások lesznek, átláthatóbb
