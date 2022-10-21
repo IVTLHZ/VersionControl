@@ -21,6 +21,13 @@ namespace Gyak06
         BindingList<RateDate> Rates = new BindingList<RateDate>();
         public Form1()
         {
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
+            Rates.Clear();
+
             InitializeComponent();
 
             IkszEmEl(Lekerdezes());
@@ -51,9 +58,12 @@ namespace Gyak06
         public string Lekerdezes()
         {
             GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
-            request.currencyNames = "EUR";
-            request.startDate = "2020-01-01";
-            request.endDate = "2020-06-30";
+            //request.currencyNames = "EUR";
+            request.currencyNames = comboBox1.SelectedItem.ToString(); //de próbából valuemember és text EUR lett
+            //request.startDate = "2020-01-01";
+            //request.endDate = "2020-06-30";
+            request.startDate = dateTimePicker1.Value.ToString();
+            request.endDate = dateTimePicker2.Value.ToString();
 
             var response = mnbService.GetExchangeRates(request);
 
@@ -85,6 +95,21 @@ namespace Gyak06
         private void Form1_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = Rates;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }
