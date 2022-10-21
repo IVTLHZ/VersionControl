@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 
 namespace Gyak06
@@ -23,6 +24,28 @@ namespace Gyak06
             InitializeComponent();
 
             IkszEmEl(Lekerdezes());
+
+            Diagram();
+        }
+
+        private void Diagram()
+        {
+            chartRateDate.DataSource = Rates;
+            // chart adatsorokból álló tömb első eleme
+            var elsőElem = chartRateDate.Series[0];
+            elsőElem.ChartType = SeriesChartType.Line;
+            //ezek az elemek már ratedate-ek, adott tulajdonság átadása sima ""-el
+            elsőElem.XValueMember = "Date";
+            elsőElem.YValueMembers ="Value";
+            //kétszeres adatsorvastagság
+            elsőElem.BorderWidth = 2;
+            //oldasló legend címke ne látszódjon
+            chartRateDate.Legends[0].Enabled = false;
+            //fő grid vonalak ne látszanak
+            chartRateDate.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chartRateDate.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            //y tengely ne 0-tól induljon
+            chartRateDate.ChartAreas[0].AxisY.IsStartedFromZero = false;
         }
 
         public string Lekerdezes()
