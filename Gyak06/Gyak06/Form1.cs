@@ -19,19 +19,54 @@ namespace Gyak06
         MNBArfolyamServiceSoapClient mnbService = new MNBArfolyamServiceSoapClient();
 
         BindingList<RateDate> Rates = new BindingList<RateDate>();
+        BindingList<string> Currencies;
+
         public Form1()
         {
+            InitializeComponent();
+            IkszEmEl2(Lekerdezes2());
+            comboBox1.DataSource = Currencies;
+
             RefreshData();
+        }
+
+        private void IkszEmEl2(string result)
+        {
+            XmlDocument xml = new XmlDocument();
+
+            xml.LoadXml(result);
+
+            
+            foreach (XmlElement item in xml.DocumentElement) 
+            {
+                string currency;
+                if (item.ChildNodes[0] == null)
+                    continue;
+                currency = item.ChildNodes[0].InnerText;
+                Currencies.Add(currency);
+            }
+
+            
+        }
+
+        private string Lekerdezes2()
+        {
+            //elérhető valuták listája
+            GetCurrenciesRequestBody request = new GetCurrenciesRequestBody();
+
+            var response = mnbService.GetCurrencies(request);
+
+            //Currencies lista feltöltéséhez
+            var result = response.GetCurrenciesResult;
+            return result;
         }
 
         private void RefreshData()
         {
             Rates.Clear();
-
-            InitializeComponent();
-
+         
             IkszEmEl(Lekerdezes());
-
+            
             Diagram();
         }
 
