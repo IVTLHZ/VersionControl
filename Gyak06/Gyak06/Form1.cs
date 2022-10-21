@@ -1,4 +1,5 @@
-﻿using Gyak06.MnbServiceReference;
+﻿using Gyak06.Entites;
+using Gyak06.MnbServiceReference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace Gyak06
     {
         MNBArfolyamServiceSoapClient mnbService = new MNBArfolyamServiceSoapClient();
 
+        BindingList<RateDate> Rates = new BindingList<RateDate>();
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace Gyak06
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            dataGridView1.DataSource = Rates;
         }
     }
 }
