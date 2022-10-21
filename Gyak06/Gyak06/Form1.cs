@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gyak06.MnbServiceReference;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,25 @@ namespace Gyak06
 {
     public partial class Form1 : Form
     {
+        MNBArfolyamServiceSoapClient mnbService = new MNBArfolyamServiceSoapClient();
+
         public Form1()
         {
             InitializeComponent();
+
+            GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
+            request.currencyNames = "EUR";
+            request.startDate = "2020-01-01";
+            request.endDate = "2020-06-30";
+
+            var response = mnbService.GetExchangeRates(request);
+
+            var result = response.GetExchangeRatesResult;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
