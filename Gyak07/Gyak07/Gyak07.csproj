@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F26931B5-5A0B-496F-A845-F24B522CE2A6}</ProjectGuid>
+    <ProjectGuid>{4C807923-B5F7-4AA0-9956-457A8E06A645}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Gyak07</RootNamespace>
     <AssemblyName>Gyak07</AssemblyName>
@@ -75,6 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
