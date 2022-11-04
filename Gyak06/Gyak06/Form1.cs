@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Gyak06
 {
@@ -19,12 +20,12 @@ namespace Gyak06
         MNBArfolyamServiceSoapClient mnbService = new MNBArfolyamServiceSoapClient();
 
         BindingList<RateDate> Rates = new BindingList<RateDate>();
-        BindingList<string> Currencies;
+        BindingList<string> Currencies = new BindingList<string>();
 
         public Form1()
         {
             InitializeComponent();
-            IkszEmEl2(Lekerdezes2());
+            IkszEmEl(Lekerdezes());
             comboBox1.DataSource = Currencies;
 
             RefreshData();
@@ -36,8 +37,8 @@ namespace Gyak06
 
             xml.LoadXml(result);
 
-            
-            foreach (XmlElement item in xml.DocumentElement) 
+            //Childnodes 0 fontos!!!
+            foreach (XmlElement item in xml.DocumentElement.ChildNodes[0]) 
             {
                 string currency;
                 if (item.ChildNodes[0] == null)
@@ -94,7 +95,10 @@ namespace Gyak06
         {
             GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
             //request.currencyNames = "EUR";
+
+            //ITT NEM JÓ VALAMI
             request.currencyNames = comboBox1.SelectedItem.ToString(); //de próbából valuemember és text EUR lett
+            
             //request.startDate = "2020-01-01";
             //request.endDate = "2020-06-30";
             request.startDate = dateTimePicker1.Value.ToString();
@@ -118,6 +122,7 @@ namespace Gyak06
                 RateDate rateDate = new RateDate();
                 rateDate.Date =Convert.ToDateTime(item.GetAttribute("date"));
                 rateDate.Currency = ((XmlElement)item.ChildNodes[0]).GetAttribute("curr");
+                
                 //1 vagy 100 egységnyi valuta értékét nézzük meg Ft-ban
                 var unit = Convert.ToInt16(((XmlElement)item.ChildNodes[0]).GetAttribute("unit"));
                 var value = Decimal.Parse(((XmlElement)item.ChildNodes[0]).InnerText);
