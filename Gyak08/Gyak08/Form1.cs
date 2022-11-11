@@ -15,6 +15,8 @@ namespace Gyak08
         List<Tick> ticks = new List<Tick>();
         //ORM objektum példányosítása
         PortfolioEntities context = new PortfolioEntities();
+        
+        List<prt> tickList = new List<Tick>();
 
         public Form1()
         {

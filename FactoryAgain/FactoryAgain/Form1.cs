@@ -101,12 +101,13 @@ namespace FactoryAgain
                 if (item.Left > maxPosition)
                     maxPosition = item.Left;
                 //ha 1000nél nagyobb a legnagyobb pozi, akkor ne legyen a listában és vezérlők között már
-                if (maxPosition >= 1000)
-                {
-                    var oldestToy = _toys[0];
-                    _toys.Remove(oldestToy);
-                    mainPanel.Controls.Remove(oldestToy);
-                }
+               
+            }
+            if (maxPosition >= 1000)
+            {
+                var oldestToy = _toys[0];
+                _toys.Remove(oldestToy);
+                mainPanel.Controls.Remove(oldestToy);
             }
         }
 
