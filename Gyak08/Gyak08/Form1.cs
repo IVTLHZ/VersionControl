@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gyak08.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +17,7 @@ namespace Gyak08
         //ORM objektum példányosítása
         PortfolioEntities context = new PortfolioEntities();
         
-        List<prt> tickList = new List<Tick>();
+        List<PortfolioItem> pl = new List<PortfolioItem>();
 
         public Form1()
         {
@@ -25,6 +26,22 @@ namespace Gyak08
             ticks = context.Ticks.ToList(); //tolist nélkül sql mondatok generálása
             //DG feltöltés
             dataGridView1.DataSource = ticks;
+
+            CreatePortfolio();
+        }
+
+        private void CreatePortfolio()
+        {
+            // PortfolioItem p = new PortfolioItem();
+            //p.Index = "OTP";
+            //p.Volume = 10;
+            //Portfolio.Add(p);
+            // ==   és olvashatóbb, példányfeltöltés egyből
+            pl.Add(new PortfolioItem() { Index = "OTP", Volume = 10 });
+            pl.Add(new PortfolioItem() { Index = "ZWACK", Volume = 10 });
+            pl.Add(new PortfolioItem() { Index = "ELMU", Volume = 10 });
+
+            dataGridView2.DataSource = pl;
         }
 
         private void Form1_Load(object sender, EventArgs e)

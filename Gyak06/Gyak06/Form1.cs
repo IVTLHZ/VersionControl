@@ -127,7 +127,7 @@ namespace Gyak06
                 rateDate.Currency = ChildElement.GetAttribute("curr");
                 
                 //1 vagy 100 egységnyi valuta értékét nézzük meg Ft-ban
-                var unit = Convert.ToInt16(((XmlElement)item.ChildNodes[0]).GetAttribute("unit"));
+                var unit = decimal.Parse(((XmlElement)item.ChildNodes[0]).GetAttribute("unit"));
                 var value = Decimal.Parse(((XmlElement)item.ChildNodes[0]).InnerText);
                 if (unit != 0) rateDate.Value = value / unit;
                 Rates.Add(rateDate);
