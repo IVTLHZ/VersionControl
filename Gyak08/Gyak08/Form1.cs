@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace Gyak08
         
         List<PortfolioItem> pl = new List<PortfolioItem>();
 
+
+
         public Form1()
         {
             InitializeComponent();
@@ -29,20 +32,6 @@ namespace Gyak08
             dataGridView1.DataSource = ticks;
 
             CreatePortfolio();
-        }
-
-        private void CreatePortfolio()
-        {
-            // PortfolioItem p = new PortfolioItem();
-            //p.Index = "OTP";
-            //p.Volume = 10;
-            //Portfolio.Add(p);
-            // ==   és olvashatóbb, példányfeltöltés egyből
-            pl.Add(new PortfolioItem() { Index = "OTP", Volume = 10 });
-            pl.Add(new PortfolioItem() { Index = "ZWACK", Volume = 10 });
-            pl.Add(new PortfolioItem() { Index = "ELMU", Volume = 10 });
-
-            dataGridView2.DataSource = pl;
 
             //konstruktorba kell duuhh
             List<decimal> Nyereségek = new List<decimal>();
@@ -63,6 +52,22 @@ namespace Gyak08
                                       select x)
                                         .ToList();
             MessageBox.Show(nyereségekRendezve[nyereségekRendezve.Count() / 5].ToString());
+        }
+
+        private void CreatePortfolio()
+        {
+            // PortfolioItem p = new PortfolioItem();
+            //p.Index = "OTP";
+            //p.Volume = 10;
+            //Portfolio.Add(p);
+            // ==   és olvashatóbb, példányfeltöltés egyből
+            pl.Add(new PortfolioItem() { Index = "OTP", Volume = 10 });
+            pl.Add(new PortfolioItem() { Index = "ZWACK", Volume = 10 });
+            pl.Add(new PortfolioItem() { Index = "ELMU", Volume = 10 });
+
+            dataGridView2.DataSource = pl;
+
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -89,7 +94,19 @@ namespace Gyak08
             }
             return value;
         }
-
-        
+        c
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            if (sfd.ShowDialog()==DialogResult.OK)
+            {
+                StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.Default);
+                foreach (var item in )
+                {
+                    sw.WriteLine($"{item.}"); //az időszak a sorszám és a nyereségszámérték tartozik hozzá
+                }
+                sw.Close();
+            }
+        }
     }
 }
