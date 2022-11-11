@@ -25,8 +25,8 @@ namespace Gyak06
         public Form1()
         {
             InitializeComponent();
+            IkszEmEl2(Lekerdezes2());
             IkszEmEl(Lekerdezes());
-            comboBox1.DataSource = Currencies;
 
             RefreshData();
         }
@@ -46,8 +46,9 @@ namespace Gyak06
                 currency = item.ChildNodes[0].InnerText;
                 Currencies.Add(currency);
             }
+            comboBox1.DataSource = Currencies;
 
-            
+
         }
 
         private string Lekerdezes2()
@@ -67,7 +68,7 @@ namespace Gyak06
             Rates.Clear();
          
             IkszEmEl(Lekerdezes());
-            
+
             Diagram();
         }
 
@@ -96,7 +97,6 @@ namespace Gyak06
             GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
             //request.currencyNames = "EUR";
 
-            //ITT NEM JÓ VALAMI
             request.currencyNames = comboBox1.SelectedItem.ToString(); //de próbából valuemember és text EUR lett
             
             //request.startDate = "2020-01-01";
@@ -121,7 +121,10 @@ namespace Gyak06
             {
                 RateDate rateDate = new RateDate();
                 rateDate.Date =Convert.ToDateTime(item.GetAttribute("date"));
-                rateDate.Currency = ((XmlElement)item.ChildNodes[0]).GetAttribute("curr");
+                var ChildElement = (XmlElement)item.ChildNodes[0];
+                if (ChildElement == null)
+                    continue;
+                rateDate.Currency = ChildElement.GetAttribute("curr");
                 
                 //1 vagy 100 egységnyi valuta értékét nézzük meg Ft-ban
                 var unit = Convert.ToInt16(((XmlElement)item.ChildNodes[0]).GetAttribute("unit"));

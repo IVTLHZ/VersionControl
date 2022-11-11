@@ -1,14 +1,14 @@
-﻿using Gyak07.Abstractions;
+﻿using FactoryAgain.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace Gyak07.Entities
-{ //public kell hogy legyen!
+namespace FactoryAgain.Entities
+{
+    //public kell hogy legyen!
     public class Ball : Toy
     {
         //labda színe kell, ez alapján rajzolá
@@ -28,7 +28,7 @@ namespace Gyak07.Entities
         //absztrakt fv-ek és implementációjuk nem lehet private, protected oké, hogy kívülről ne legyen látható
         //virtual metódus felülírására is override kell
 
-        protected override void DrawImage(Graphics g) 
+        protected override void DrawImage(Graphics g)
         {
             //vezérlőbe illeszkedő kitöltött kék kör
             //Graphics osztály segít ebben

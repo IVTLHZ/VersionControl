@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4C807923-B5F7-4AA0-9956-457A8E06A645}</ProjectGuid>
+    <ProjectGuid>{59632009-1311-4A9B-B5DE-3E410E8711DD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Gyak07</RootNamespace>
-    <AssemblyName>Gyak07</AssemblyName>
+    <RootNamespace>FactoryAgain</RootNamespace>
+    <AssemblyName>FactoryAgain</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -53,11 +53,15 @@
     <Compile Include="Entities\Ball.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Entities\BallFactory.cs" />
+    <Compile Include="Entities\Ballfactory.cs" />
     <Compile Include="Entities\Car.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\CarFactory.cs" />
+    <Compile Include="Entities\Present.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Entities\PresentFactory.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,8 +95,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Images\" />
+    <Content Include="Images\car.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

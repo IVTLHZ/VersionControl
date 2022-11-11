@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4C807923-B5F7-4AA0-9956-457A8E06A645}</ProjectGuid>
+    <ProjectGuid>{60CA68CA-ED2C-449F-AFB4-3DE90C845DDB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Gyak07</RootNamespace>
-    <AssemblyName>Gyak07</AssemblyName>
+    <RootNamespace>Gyak08</RootNamespace>
+    <AssemblyName>Gyak08</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,18 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\IToyFactory.cs" />
-    <Compile Include="Abstractions\Toy.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Entities\Ball.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Entities\BallFactory.cs" />
-    <Compile Include="Entities\Car.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Entities\CarFactory.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,9 +54,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -90,9 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
