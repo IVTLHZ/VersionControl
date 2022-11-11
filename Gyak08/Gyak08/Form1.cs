@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace Gyak08
 {
@@ -47,6 +48,26 @@ namespace Gyak08
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+        
+        //készen kapott fv
+        //portfólióérték számítása
+        private decimal GetPortfolioValue(DateTime date)
+        {
+            decimal value = 0;
+            foreach (var item in pl)
+            {
+                var last = (from x in ticks
+                            where item.Index == x.Index.Trim() //tickek szűrése a keresett index-xel megegyezőre
+                                                               //trim, mert az index nchar(15)
+                                                               //tárol unicode karaktereket , de fix 15 karakter hosszú mező
+                                                               //le kell vágni a fel nem hazsnált karaktereket
+                               && date <= x.TradingDay //ha nincs a kérdezett napon rekord az aznap kereskedésről
+                            select x)
+                            .First();
+                value += (decimal)last.Price * item.Volume;
+            }
+            return value;
         }
     }
 }
