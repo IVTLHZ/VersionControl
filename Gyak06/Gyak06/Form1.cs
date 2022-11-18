@@ -91,7 +91,7 @@ namespace Gyak06
             //y tengely ne 0-tól induljon
             chartRateDate.ChartAreas[0].AxisY.IsStartedFromZero = false;
         }
-
+        //árfolyamok lehívása
         public string Lekerdezes()
         {
             GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
@@ -103,10 +103,10 @@ namespace Gyak06
             //request.endDate = "2020-06-30";
             request.startDate = dateTimePicker1.Value.ToString();
             request.endDate = dateTimePicker2.Value.ToString();
-
+            //fv meghívása request bemeneti pararméterrel és visszatérési érték tárolása
             var response = mnbService.GetExchangeRates(request);
-
-            var result = response.GetExchangeRatesResult;
+            //a fv által visszaadott értékekből egy tul. lekérdezése
+            var result = response.GetExchangeRatesResult; //string formában a visszakapott xml üzenet
             return result;
         }
 
@@ -128,7 +128,7 @@ namespace Gyak06
                 
                 //1 vagy 100 egységnyi valuta értékét nézzük meg Ft-ban
                 var unit = decimal.Parse(((XmlElement)item.ChildNodes[0]).GetAttribute("unit"));
-                var value = Decimal.Parse(((XmlElement)item.ChildNodes[0]).InnerText);
+                var value = decimal.Parse(((XmlElement)item.ChildNodes[0]).InnerText.Replace(",",".")); //nem kell replace magyarnál
                 if (unit != 0) rateDate.Value = value / unit;
                 Rates.Add(rateDate);
             }

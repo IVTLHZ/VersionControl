@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FactoryAgain.Entities
 {
     //public kell hogy legyen!
-    public class Ball : Toy
+    public class Ball : Toy 
     {
         //labda színe kell, ez alapján rajzolá
         public SolidBrush BallColor { get; private set; } //private set, hogy kívülről csak lekérdezni lehessen a property értéket

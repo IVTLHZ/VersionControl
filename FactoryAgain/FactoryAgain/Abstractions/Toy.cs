@@ -12,7 +12,7 @@ namespace FactoryAgain.Abstractions
     //absztarkt fv működése leszármazottban felülírhatja az őst
     //pl a movetoy alakítható lenne úgy, hogy a labda nem scak vízszintesen mozog, pattog isc
 
-    public abstract class Toy : Label
+    public abstract class Toy : Label //osztályok közös őse
     //absztrakció implementálásával még nincs változás eddigiekben (leszármazottból fejtetünk vissza)
     //be kell építeni még a leszármazottba
     {

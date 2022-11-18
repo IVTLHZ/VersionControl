@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu>
+<product>
+<name>Belgian Waffles</name>
+<price>$5.95</price>
+<description>two of our famous Belgian Waffles with plenty of real maple syrup</description>
+<calories>650</calories>
+<type>food</type>
+</product>
+<product>
+<name>Strawberry Belgian Waffles</name>
+<price>$7.95</price>
+<description>light Belgian waffles covered with strawberrys and whipped cream</description>
+<calories>900</calories>
+<type>food</type>
+</product>
+<product>
+<name>Berry-Berry Belgian Waffles</name>
+<price>$8.95</price>
+<description>light Belgian waffles covered with an assortment of fresh berries and whipped cream</description>
+<calories>900</calories>
+<type>food</type>
+</product>
+<product>
+<name>French Toast</name>
+<price>$4.50</price>
+<description>thick slices made from our homemade sourdough bread</description>
+<calories>600</calories>
+<type>food</type>
+</product>
+<product>
+<name>Homestyle Breakfast</name>
+<price>$6.95</price>
+<description>two eggs, bacon or sausage, toast, and our ever-popular hash browns</description>
+<calories>950</calories>
+<type>food</type>
+</product>
+<product>
+<name>Buffalo Chicken Wrap</name>
+<price>$9.95</price>
+<description>grilled buffalo, blue cheese, lettuce, tomatoes</description>
+<calories>850</calories>
+<type>food</type>
+</product>
+<product>
+<name>Classic Mac&amp;Cheese</name>
+<price>$9.95</price>
+<description>creeme cheese sauce, noodles</description>
+<calories>960</calories>
+<type>food</type>
+</product>
+<product>
+<name>Chipotle Chicken Fresh Mex Bowl</name>
+<price>$10.95</price>
+<description>corn &amp; black bean salsa, avocado, shredded cheese, tortilla strips, cilantro, chipotle pesto, house-made ranch</description>
+<calories>950</calories>
+<type>food</type>
+</product>
+<product>
+<name>Classic Sirloin* - 10oz</name>
+<price>$18.95</price>
+<description>seasoned &amp; topped with garlic butter. Served with loaded mashed potatoes, steamed broccoli</description>
+<calories>800</calories>
+<type>food</type>
+</product>
+<product>
+<name>Bowl of the Original Chili</name>
+<price>$9.95</price>
+<description>beef, onions &amp; signature blend of spices</description>
+<calories>750</calories>
+<type>food</type>
+</product>
+<product>
+<name>Cajun Shrimp Pasta</name>
+<price>$15.95</price>
+<description>shrimp, penne in Alfredo sauce</description>
+<calories>900</calories>
+<type>food</type>
+</product>
+<product>
+<name>Mango-Chile Chicken</name>
+<price>$12.95</price>
+<description>Chile spices, mango glaze &amp; topped with chopped mango, cilantro, pico, avocado</description>
+<calories>920</calories>
+<type>food</type>
+</product>
+<product>
+<name>Honey-Chipotle Crispers &amp; Waffles</name>
+<price>$13.95</price>
+<description>crispers on top of Belgian waffles</description>
+<calories>1000</calories>
+<type>food</type>
+</product>
+<product>
+<name>Classic Margarita</name>
+<price>$9.00</price>
+<description>blend of Exotico Blanco Tequila, lime juice, Triple Sec, and magic margarita mix</description>
+<calories>300</calories>
+<type>drink</type>
+</product>
+<product>
+<name>Pineapple Martini</name>
+<price>$8.00</price>
+<description>made with our Pineapple Infused Vodka</description>
+<calories>310</calories>
+<type>drink</type>
+</product>
+<product>
+<name>Electric Lemonade</name>
+<price>$8.75</price>
+<description>frozen lemonade spiked with UV Blue Raspberry Vodka and Blue Curacao</description>
+<calories>360</calories>
+<type>drink</type>
+</product>
+<product>
+<name>Peach Mule</name>
+<price>$9.25</price>
+<description>squeezed limes and Wild Roots Peach Infused Organic Vodka mixed with Barritt’s Ginger Beer</description>
+<calories>300</calories>
+<type>drink</type>
+</product>
+<product>
+<name>Spiced Cranberry Margarita</name>
+<price>$9.00</price>
+<description>Exotico Blanco Tequila, fresh lime, cranberry juice, and cinnamon simple syrup</description>
+<calories>380</calories>
+<type>drink</type>
+</product>
+</menu>

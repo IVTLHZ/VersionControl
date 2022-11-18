@@ -81,13 +81,19 @@ namespace FactoryAgain
         }
 
         //timerekkel futószalag az új elemeknek
+        //a beállított 3mp után megjelenik az adott játék és az 1000es pozicíóban az megsemmisül
         private void createTimer_Tick_1(object sender, EventArgs e)
         {
             var új = Factory.CreateNew();
             _toys.Add(új);
             //panel vezérlőihez hozzáadás
             mainPanel.Controls.Add(új);
-            új.Left = -új.Left; //képernyőn kívülről beúszás
+            új.Left = -új.Width; //képernyőn kívülről beúszás
+                      
+        }
+
+        private void Új_Click(object sender, EventArgs e)
+        {
         }
 
         private void conveyorTimer_Tick_1(object sender, EventArgs e)
@@ -101,7 +107,7 @@ namespace FactoryAgain
                 if (item.Left > maxPosition)
                     maxPosition = item.Left;
                 //ha 1000nél nagyobb a legnagyobb pozi, akkor ne legyen a listában és vezérlők között már
-               
+                
             }
             if (maxPosition >= 1000)
             {
@@ -125,6 +131,7 @@ namespace FactoryAgain
             Factory = new BallFactory()
             {
                 BallColor = button3.BackColor //a színválasztás megvalósítása után így bűvitjük a fv-t
+                
             };
         }
     }
