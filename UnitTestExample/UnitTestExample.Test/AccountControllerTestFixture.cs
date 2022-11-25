@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework; //kell az attribútumhoz
 using System;
+using System.Activities; //reference után
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -65,6 +66,33 @@ namespace UnitTestExample.Test
             Assert.AreEqual(email, actualResultHP.Email); //fv-be írt e-mail ugyanaz-e mint az accountból visszakapott
             Assert.AreEqual(password, actualResultHP.Password); //fv-be írt jelszó ugyanaz-e mint az accountból visszakapott
             Assert.AreEqual(Guid.Empty, actualResultHP.ID); //account id ki lett-e töltve, nem üres-e
+        }
+
+
+        [
+            Test,
+            //itt csak hibás eset legyen
+            TestCase("irf@uni-corvinus", "Abcd1234"),
+            TestCase("irf.uni-corvinus.hu", "Abcd1234"),
+            TestCase("irf@uni-corvinus.hu", "abcd1234"),
+            TestCase("irf@uni-corvinus.hu", "ABCD1234"),
+            TestCase("irf@uni-corvinus.hu", "abcdABCD"),
+            TestCase("irf@uni-corvinus.hu", "Ab1234"),
+        ]
+        public void TestRegisterValidateException(string email, string password)
+        {
+            var aCHP = new AccountController();
+            try
+            {
+                var actualResultHP = aCHP.Register(email, password);
+                Assert.Fail(); //ha a kód eljut idáig, az azt jelenti, hogy nem a megfelelő hibát dobta a Register függvény a futtatásakor
+            }
+            catch (Exception ex) //ex-et én írom
+            {
+                //add reference - assemblies - system.activities
+                Assert.IsInstanceOf<ValidationException>(ex);
+            }
+            
         }
 
     }
