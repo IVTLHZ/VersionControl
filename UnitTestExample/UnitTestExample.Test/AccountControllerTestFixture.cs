@@ -8,9 +8,13 @@ using UnitTestExample.Controllers;
 
 namespace UnitTestExample.Test
 {
-    public class AccountControllerTestFixture
-    {   
-        [Test]//fv attribútuma
+    public class AccountControllerTestFixture //ha nem fut le jól. akkor lehet újra kell a nunit, nunit3, moq
+    {   //fv attribútumai
+        [Test,
+         TestCase("abcd1234", false), //véletlen jelszó megy az e-mailhez
+         TestCase("irf@uni-corvinus", false), //e-mailből kimarad a domain
+         TestCase("irf.uni-corvinus.hu", false), //kimarad a @
+         TestCase("irf@uni-corvinus.hu", true)] //oké az e-mail
         public void TestValidateEmail(string email, bool expectedResult) //bemenő paraméteres fv., public kell!
         {
             //ARRANGE
