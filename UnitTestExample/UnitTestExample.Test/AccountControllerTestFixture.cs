@@ -27,6 +27,25 @@ namespace UnitTestExample.Test
             Assert.AreEqual(expectedResult, actualResult);
             //több assert hívásnál akkor lesz sikeres a teszt, ha minden egyes hívás eredménye sikeres 
 
+
         }
-    }
-}
+
+        //account controller register fv-ében a hibák követelményei megvannak:
+        //A jelszó legalább 8 karakter hosszú kell legyen, csak az angol ABC betűiből és számokból állhat, és tartalmaznia kell legalább egy kisbetűt, egy nagybetűt és egy számot
+        [Test,
+        TestCase("AAAAAAAAA", false),//nincs szám
+        TestCase("AAAAAAAAA1", false), //nincs kisbetű
+        TestCase("aaaaaaaaa1", false), //nincs nagybetű
+        TestCase("aaa111", false), //túl rövid
+        TestCase("AaAaAaAa1", true)] //okés jelszó
+        public void TestValidatePassword(string password, bool expectedResultPsw) //bemenő paraméteres fv., public kell!
+        {
+            var aCPswd = new AccountController();
+
+            var actualResultPswd = aCPswd.ValidatePassword(password);
+
+            Assert.AreEqual(expectedResultPsw, actualResultPswd);
+
+
+        }
+    } }
