@@ -20,7 +20,7 @@ namespace UnitTestExample.Controllers
             AccountManager = new AccountManager();
         }
 
-        public Account Register(string email, string password)
+        public Account Register(string email, string password) //lehet előre tervezett kivétel, ami nem ugyanaz, mint az account kimeneti típusa
         {
             if (!ValidateEmail(email))
                 throw new ValidationException(

@@ -33,6 +33,8 @@ namespace UnitTestExample.Test
         //account controller register fv-ében a hibák követelményei megvannak:
         //A jelszó legalább 8 karakter hosszú kell legyen, csak az angol ABC betűiből és számokból állhat, és tartalmaznia kell legalább egy kisbetűt, egy nagybetűt és egy számot
         [Test,
+        //a test case attribútum nem csak referencia típusú értéket tud kezelni mint pl string, int, bool, az elvárt kimeneteket bonyollt lenne megadni
+        //happypath: először a register fv helyes változatának kezelése
         TestCase("AAAAAAAAA", false),//nincs szám
         TestCase("AAAAAAAAA1", false), //nincs kisbetű
         TestCase("aaaaaaaaa1", false), //nincs nagybetű
@@ -48,4 +50,22 @@ namespace UnitTestExample.Test
 
 
         }
-    } }
+
+        [
+            Test,
+            TestCase("irf@uni-corvinus.hu", "Abcd1234"),
+            TestCase("irf@uni-corvinus.hu", "Abcd1234567"),
+        ]
+        public void TestRegisterHappyPath(string email, string password)
+        {
+            var aCHP= new AccountController();
+
+            var actualResultHP = aCHP.Register(email, password);
+
+            Assert.AreEqual(email, actualResultHP.Email); //fv-be írt e-mail ugyanaz-e mint az accountból visszakapott
+            Assert.AreEqual(password, actualResultHP.Password); //fv-be írt jelszó ugyanaz-e mint az accountból visszakapott
+            Assert.AreEqual(Guid.Empty, actualResultHP.ID); //account id ki lett-e töltve, nem üres-e
+        }
+
+    }
+}
