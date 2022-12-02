@@ -13,10 +13,10 @@ namespace RPA02
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RPAEntities1 : DbContext
+    public partial class RPAEntities : DbContext
     {
-        public RPAEntities1()
-            : base("name=RPAEntities1")
+        public RPAEntities()
+            : base("name=RPAEntities")
         {
         }
     
@@ -25,6 +25,6 @@ namespace RPA02
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Phone> Phones { get; set; }
+        public virtual DbSet<Flight_data> Flight_data { get; set; }
     }
 }

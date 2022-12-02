@@ -12,12 +12,13 @@ namespace RPA02
     using System;
     using System.Collections.Generic;
     
-    public partial class Phone
+    public partial class Flight_data
     {
         public int id { get; set; }
-        public string name { get; set; }
-        public string state { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
         public Nullable<int> price { get; set; }
+        public Nullable<System.DateTime> departure_time { get; set; }
+        public Nullable<System.DateTime> arrival_time { get; set; }
+        public Nullable<int> layover { get; set; }
+        public Nullable<int> remaining_tickets { get; set; }
     }
 }

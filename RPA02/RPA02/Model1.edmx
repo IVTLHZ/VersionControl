@@ -5,51 +5,54 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="RPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Phone">
+        <EntityType Name="Flight_data">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nchar" MaxLength="10" />
-          <Property Name="state" Type="nchar" MaxLength="10" />
-          <Property Name="date" Type="datetime" />
           <Property Name="price" Type="int" />
+          <Property Name="departure_time" Type="datetime" />
+          <Property Name="arrival_time" Type="datetime" />
+          <Property Name="layover" Type="int" />
+          <Property Name="remaining_tickets" Type="int" />
         </EntityType>
         <EntityContainer Name="RPAModelStoreContainer">
-          <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flight_data" EntityType="Self.Flight_data" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RPAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Phone">
+        <EntityType Name="Flight_data">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="state" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="date" Type="DateTime" Precision="3" />
           <Property Name="price" Type="Int32" />
+          <Property Name="departure_time" Type="DateTime" Precision="3" />
+          <Property Name="arrival_time" Type="DateTime" Precision="3" />
+          <Property Name="layover" Type="Int32" />
+          <Property Name="remaining_tickets" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="RPAEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Phones" EntityType="Self.Phone" />
+        <EntityContainer Name="RPAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Flight_data" EntityType="Self.Flight_data" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RPAModelStoreContainer" CdmEntityContainer="RPAEntities1">
-          <EntitySetMapping Name="Phones">
-            <EntityTypeMapping TypeName="RPAModel.Phone">
-              <MappingFragment StoreEntitySet="Phone">
+        <EntityContainerMapping StorageEntityContainer="RPAModelStoreContainer" CdmEntityContainer="RPAEntities">
+          <EntitySetMapping Name="Flight_data">
+            <EntityTypeMapping TypeName="RPAModel.Flight_data">
+              <MappingFragment StoreEntitySet="Flight_data">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="departure_time" ColumnName="departure_time" />
+                <ScalarProperty Name="arrival_time" ColumnName="arrival_time" />
+                <ScalarProperty Name="layover" ColumnName="layover" />
+                <ScalarProperty Name="remaining_tickets" ColumnName="remaining_tickets" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

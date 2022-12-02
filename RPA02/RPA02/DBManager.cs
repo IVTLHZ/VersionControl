@@ -1,39 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RPA02
 {
-    public class DBManager
+    public static class DBManager
     {
-        public static void AddPhone() //kell a static kulcsszó, hogy main-ből használható legyen
+
+        public static void AddFlightToDb() //kell a static kulcsszó, hogy main-ből használható legyen
         {
-            using (RPAEntities1 context = new RPAEntities1())
+            using (RPAEntities context = new RPAEntities())
             {
-                Phone t = new Phone();
-                t.name = "iPhone";
-                t.state = "használt";
-                t.date = DateTime.Now;
-                t.price = 200000;
-
-                context.Phones.Add(t);
+                Flight_data f = new Flight_data();
+                //f. = ;
+                
+                context.Flight_data.Add(f);
                 context.SaveChanges();
-            }; 
+            };
         }
 
-        public static string GetPhoneNameById(int id)
-        {
-            RPAEntities1 context = new RPAEntities1();
-
-            var query = from Phone in context.Phones
-                        where Phone.id == id
-                        select Phone;
-            //List<Phone> phone = query.ToList(); ha lista lenne
-            var result = query.FirstOrDefault();
-            return result.name;
-        }
+      
 
     }
 }

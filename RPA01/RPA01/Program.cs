@@ -49,7 +49,76 @@ namespace RPA01
 
             wd.FindElement(By.XPath("/html/body/div/div/div/article/div/div/div/div[8]/div/div[2]/div/div/div/form/label[6]/span")).Click();
 
+
+
+
+            //code-first megközelítés
+
+            //connection string, ez látszik, hogy létrehozott egy local hostot, ebben master db-t
+            //Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;
+            //csak a sqlexpress nevet kell megadni majd ssms-ben
+
+            //adatbázist a robot elvárt funkcionalitásai alapján tervezünk
+            //futás során kell kívülről jövő paraméter, amit belerakunk
+            //pl összes létező hirdetést töltse le és lehet tovább nézni, hogy lett-e x idő óta új, változozz-e valami
+
+            //kézzel ssms-ben adatbázis és tábla létrehozása
+            //csatlakozás
+            //new database
+            //new table
+
+            //telefonok lekérdezésére
+            //id-nál set primary key és is identity yes
+            //new item ADO.NET
+            //queryket kezelő osztály kell
+            //DBManager.AddPhone(); //így adatb-ba kerül az osztályban megadott elem
+
+            //string name = DBManager.GetPhoneNameById(1);
+            //Console.WriteLine(name);
         }
+
+
+
+        //API-ba:
+
+        //IWebDriver wd = new ChromeDriver();
+        //wd.Navigate().GoToUrl("");
+        //betöltés után fut le csk a kövi parancs
+        //IWebElement NevMegadas = wd.FindElement(By.Name("your-name"));
+
+
+
+        //DBManagerbe:
+
+        //public static void AddPhone() //kell a static kulcsszó, hogy main-ből használható legyen
+        //{
+        //using (RPAEntities1 context = new RPAEntities1())
+        //{
+        //Phone t = new Phone();
+        //t.name = "iPhone";
+        //t.state = "használt";
+        //t.date = DateTime.Now;
+        //t.price = 200000;
+
+        //context.Phones.Add(t);
+        //context.SaveChanges();
+        //}; 
+        //}
+
+        //public static string GetPhoneNameById(int id)
+        //{
+        //RPAEntities1 context = new RPAEntities1();
+
+        //var query = from Phone in context.Phones
+        //where Phone.id == id
+        //select Phone;
+        //List<Phone> phone = query.ToList(); ha lista lenne
+        //var result = query.FirstOrDefault();
+        //return result.name;
+        //}
+
+
+        //+) public static void AddFlightToDb() - kell a static kulcsszó, hogy main-ből használható legyen
     }
 }
 //írja, hogy code 0-val futott le, tehát sikeresen + bármely billentyűt lenyomva kilép
