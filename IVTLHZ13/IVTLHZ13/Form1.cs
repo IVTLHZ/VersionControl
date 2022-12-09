@@ -67,11 +67,12 @@ namespace IVTLHZ13
             //játék újraindítása előtt megnézzük megnyerte-e valaki a pályát
             //ha igen, lementjük az agyát és ne fusson tovább, ne is legyen így már esemánykezelő
             var winners = from p in topPerformers
-                          where p.IsWinner
+                          where p.IsWinner //hogy tesztelni tudjam, átírom tagadásra !p......-ra
                           select p;
             if (winners.Count() > 0)
             {
                 winnerBrain = winners.FirstOrDefault().Brain.Clone();
+                button1.Visible = true;
                 gc.GameOver -= Gc_GameOver;
                 return;
             }
@@ -98,6 +99,16 @@ namespace IVTLHZ13
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //ha van győztes, akkor versenyezhetünk vele
+            gc.ResetCurrentLevel();
+            gc.AddPlayer(winnerBrain.Clone());
+            gc.AddPlayer();
+            ga.Focus();
+            gc.Start(true);
         }
     }
 }
