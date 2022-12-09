@@ -117,7 +117,7 @@ namespace IVTLHZ11
                     {
                         Gender = (Gender)Enum.Parse(typeof(Gender), line[0]),
                         Age = int.Parse(line[1]),
-                        DP = double.Parse(line[2])
+                        DP = double.Parse(line[2].Replace(",", ".")) //csak az agol gép miatt a replace rész
                     });
                 }
             }
@@ -138,7 +138,7 @@ namespace IVTLHZ11
                     {
                         Age = int.Parse(line[0]),
                         NbrOfChildren = int.Parse(line[1]),
-                        BP = double.Parse(line[2])
+                        BP = double.Parse(line[2].Replace(",", ".")) //csak az agol gép miatt a replace rész
                     });
                 }
             }
