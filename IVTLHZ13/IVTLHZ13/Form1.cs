@@ -61,6 +61,25 @@ namespace IVTLHZ13
                              orderby p.GetFitness() descending //getfittness double érték, attól függ milyen közel jutott a játékos a célhoz
                              select p;
             var topPerformers = playerList.Take(populationSize / 2).ToList(); //referencia típusú változó az előbbi lekérdezés, de nme ürül le a lista újraindítással ,új lista generálódik, nem baj, hogy az eredeti lista kiürül
+
+
+            gc.ResetCurrentLevel(); //tábla újraindítása
+            foreach (var p in topPerformers) //új populáció legenerálása
+                                             //játékosok mozgáslistája brain osztályban tárolva, annyi irányvekktor a listában, ahány lehetséges lépése a játékosokak
+            {
+                var b = p.Brain.Clone(); //játékos agyának klónozása
+                if (generation % 3 == 0)
+                    gc.AddPlayer(b.ExpandBrain(nbrOfStepsIncrement)); //adott brainnel rendelkező jákost adunk hozzá
+                else
+                    gc.AddPlayer(b);
+
+                //amelyik játékost nem csak lemásoljuk, annak mutált válozata lesz, más mozgáslista
+                if (generation % 3 == 0) //minden 3lépésben agybővítés nbrOfStepsIncrement változóban szereplő számú új, véletlenszerű lépésse
+                    gc.AddPlayer(b.Mutate().ExpandBrain(nbrOfStepsIncrement));
+                else
+                    gc.AddPlayer(b.Mutate());
+            }
+            gc.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e)
