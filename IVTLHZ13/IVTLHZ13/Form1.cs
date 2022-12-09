@@ -23,6 +23,8 @@ namespace IVTLHZ13
         int nbrOfStepsIncrement = 10;
         int generation = 1;
 
+
+        Brain winnerBrain = null;
         public Form1()
         {
             InitializeComponent();
@@ -62,6 +64,17 @@ namespace IVTLHZ13
                              select p;
             var topPerformers = playerList.Take(populationSize / 2).ToList(); //referencia típusú változó az előbbi lekérdezés, de nme ürül le a lista újraindítással ,új lista generálódik, nem baj, hogy az eredeti lista kiürül
 
+            //játék újraindítása előtt megnézzük megnyerte-e valaki a pályát
+            //ha igen, lementjük az agyát és ne fusson tovább, ne is legyen így már esemánykezelő
+            var winners = from p in topPerformers
+                          where p.IsWinner
+                          select p;
+            if (winners.Count() > 0)
+            {
+                winnerBrain = winners.FirstOrDefault().Brain.Clone();
+                gc.GameOver -= Gc_GameOver;
+                return;
+            }
 
             gc.ResetCurrentLevel(); //tábla újraindítása
             foreach (var p in topPerformers) //új populáció legenerálása
