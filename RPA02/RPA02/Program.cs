@@ -21,7 +21,7 @@ namespace RPA02
         {
             //https://www.expedia.com/Flights-Search?flight-type=on&mode=search&trip=oneway&leg1=from%3Abudapest%2Cto%3Abarcelona%2Cdeparture%3A12%2F9%2F2022TANYT&options=cabinclass%3Aeconomy&passengers=children%3A0%2Cadults%3A1%2Cseniors%3A0%2Cinfantinlap%3AY&fromDate=12%2F9%2F2022&d1=2022-12-09
             string url= "https://www.expedia.com/?pwaLob=wizard-flight-pwa";
-            string dep_place ="barcelona";
+            string dep_place ="budapest";
             string arr_place= "barcelona";
             string dep_date= "Dec162022"; //csak ebben a formátumban működik (hónap nevének első 3 betűje, nap(2 karakter), év(2 karakter))
             List<string[]> data = new List<string[]>();
@@ -44,8 +44,9 @@ namespace RPA02
 
             driver.FindElement(By.Id("d1-btn")).Click();
             driver.FindElement(By.CssSelector("[aria-label='" + dep_date + "']")).Click();
+
             driver.FindElement(By.CssSelector("[data-stid='apply-date-picker']")).Click();
-            Thread.Sleep(1000);
+
             driver.FindElement(By.CssSelector("[data-testid='submit-button']")).Click();
 
             while (true)
@@ -132,19 +133,10 @@ namespace RPA02
 
         static void exportToExcel(List<string[]> data)
         {
-            //A bemenet a data nevű string tömbökből álló lista
-            //Egy tömben egy jegy adatai vannak
-            //Az adatok sorrendjét és index számát kikommentelve látod feljebb
-            //Ha nincs adat, hogy hány jegy van még akkor helyette Na van
-            //Ha nincs átszállás, akkor helyette Nonstop van
-            //De minden esetben ugyanolyan index számmal rendelkeznek az adatok
-            //A data list pedig ezekből a tömbökből áll
+           
             try
             {
-                //String myPath = @"""C:\Users\I573552\Desktop\Uni\IRF\repos\VersionControl\RPA02\RPA02\bin\Debug\available_flights.xls""";
-                //File.Delete(myPath);
-
-
+                
                 Excel.Application xlApp = new Excel.Application();
                 
                 
@@ -175,7 +167,7 @@ namespace RPA02
                     
                     xlWS.get_Range("A1", "F1").Font.Bold = true;
                     xlWS.get_Range("A1", "F1").VerticalAlignment =Excel.XlVAlign.xlVAlignCenter;
-                    xlWS.get_Range("E1", "F1").ColumnWidth=35;
+                    
                     xlWS.get_Range("A1", "F1").BorderAround2(Excel.XlLineStyle.xlContinuous, XlBorderWeight.xlThick);
                     var workingDirectory = AppContext.BaseDirectory;
                    
